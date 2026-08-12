@@ -4157,6 +4157,11 @@ export const loadServerActionClient = ${
             (condition) => condition !== "browser",
           );
         }
+        const optimizerConditions = config.optimizeDeps?.rolldownOptions?.resolve?.conditionNames;
+        if (optimizerConditions?.includes("browser")) {
+          config.optimizeDeps!.rolldownOptions!.resolve!.conditionNames =
+            optimizerConditions.filter((condition) => condition !== "browser");
+        }
         return null;
       },
     },
